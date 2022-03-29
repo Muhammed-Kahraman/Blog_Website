@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    {% if post %}
+        <h4>{{ post.title }}</h4>
+        <hr>
+        Author: {{ post.author }}
+        <hr>
+        Created Date: {{ post.created_date }}
+        <hr>
+        {{ post.content | safe}}
+        <hr>
+    {% else %}
+        <div class="alert alert-danger">
+            There is no such a post.
+        </div>
+    {% endif %}
+
+{% endblock %}

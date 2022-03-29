@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+{% block body %}
+    <h3>DashBoard</h3>
+    <small>Welcome {{ session["username"] }}!</small>
+    <br>
+    <a href="/addposts" class="btn btn-success" style="margin-top: 10px">Add a Post</a>
+    <br>
+    <br>
+    {% if posts %}
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Author</th>
+                    <th scope="col">Date</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+               {% for post in posts %}
+                    <tr>
+                    <th scope="row"> {{ post.id }}</th>
+                    <td><a href="/posts/{{ post.id }}">{{ post.title }}</a></td>
+                    <td> {{ post.author }}</td>
+                    <td> {{ post.created_date }}</td>
+                    <td><a href="/edit/{{ post.id }}" class="btn btn-primary">Update</a></td>
+                    <td><a href="/delete/{{ post.id }}" class="btn btn-danger">Delete</a></td>
+                    </tr>
+               {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="alert alert-danger">No Blog Post in this account yet.</div>
+    {% endif %}
+
+{% endblock %}
